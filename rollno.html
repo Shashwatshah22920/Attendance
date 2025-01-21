@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter Roll Number</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input[type="text"] {
+      width: 200px;
+      padding: 10px;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    #confirmation {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Enter Your Roll Number</h1>
+  <p>Your QR Code ID: <span id="qr-id"></span></p>
+  
+  <input type="text" id="rollno" placeholder="Enter Roll Number" required>
+  <br>
+  <button onclick="submitRollNumber()">Submit</button>
+
+  <p id="confirmation"></p>
+
+  <script>
+    // Get the query parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const qrId = urlParams.get('id');
+    
+    // Display the QR ID
+    document.getElementById('qr-id').textContent = qrId;
+
+    // Function to submit the roll number
+    function submitRollNumber() {
+      const rollNumber = document.getElementById('rollno').value;
+      if (rollNumber) {
+        // Show confirmation message
+        document.getElementById('confirmation').textContent = `Roll Number ${rollNumber} successfully submitted for QR ID: ${qrId}`;
+        
+        // Here you can add the logic to save the roll number (e.g., sending it to a server or saving locally)
+      } else {
+        document.getElementById('confirmation').textContent = 'Please enter a roll number.';
+        document.getElementById('confirmation').style.color = 'red';
+      }
+    }
+  </script>
+
+</body>
+</html>
